@@ -3,10 +3,11 @@ from sparkcontexts import sparksession_local,sparksession_yarn
 import datetime
 # from datetime import datetime,time
 import time
+from pyspark.sql import SparkSession
 
 if __name__  ==  "__main__":
 
-    spark = sparksession_yarn()
+    spark = SparkSession.builder.appName("Sparkapp").getOrCreate()
     
     # ETL
     rdd = spark.sparkContext.parallelize(range(1,1000))
@@ -18,7 +19,3 @@ if __name__  ==  "__main__":
 
 
     spark.stop()
-
-
-
-

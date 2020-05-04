@@ -32,8 +32,22 @@ def sparksession_yarn():
                 config("spark.app.name","yarnapp").\
                 config("spark.driver.memory","2g").\
                 config("spark.driver.cores","2").\
-                config("spark.executor.cores","2").\
-                config("spark.executor.memory","2g").\
+                config("spark.executor.cores","1").\
+                config("spark.executor.memory","1g").\
                 getOrCreate()
         return spark                    
+# Worker resources
+        #         executor cores 2   memory 2g
+
+        # 4c 8g --> 2c 2g --> e1  -->2p 
+        #           2c 2g --> e2  -->2p
+        # 4c 8g --> 2c 2g --> e3  -->2p
+        #           2c 2g --> e4  -->2p
+
+# In YARN, for an application an Application Master will be launched
+# Application master should also run in a container.
+# In YARN -> processing of applciations happen  in containers
+
+# if n containers --> 1 container for AM and others for processing (executors)
+
 
